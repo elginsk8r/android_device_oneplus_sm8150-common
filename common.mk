@@ -232,6 +232,10 @@ PRODUCT_PACKAGES += \
     vendor.qti.hardware.display.mapper@3.0.vendor \
     vendor.qti.hardware.display.mapper@4.0.vendor
 
+# Add an extra 10% saturation to display colors
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.sys.sf.color_saturation=1.1
+
 # Doze
 PRODUCT_PACKAGES += \
     OnePlusDoze
