@@ -234,8 +234,8 @@ PRODUCT_PACKAGES += \
 
 # Set display color mode to Saturated by default
 PRODUCT_PROPERTY_OVERRIDES += \
-    persist.sys.sf.color_saturation=1.1 \
-    persist.sys.sf.native_mode=0 \
+    persist.sys.sf.color_saturation=1.0 \
+    persist.sys.sf.native_mode=2 \
     persist.sys.sf.color_mode=9
 
 # Doze
