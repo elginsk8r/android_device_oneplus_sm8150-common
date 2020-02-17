@@ -293,6 +293,8 @@ PRODUCT_PACKAGES += \
     android.hidl.manager@1.0 \
     android.hidl.manager@1.0_system
 
+ODM_MANIFEST_FILES += device/oneplus/sm8150-common/manifest-qva.xml
+
 # HotwordEnrollement app permissions
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/privapp-permissions-hotword.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/privapp-permissions-hotword.xml
@@ -326,10 +328,6 @@ PRODUCT_PACKAGES += \
 # Lights
 PRODUCT_PACKAGES += \
     android.hardware.light@2.0-service.oneplus_msmnile
-
-# Manifest
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/manifest-qva.xml:$(TARGET_COPY_OUT_ODM)/etc/vintf/manifest.xml
 
 # Media
 PRODUCT_COPY_FILES += \
