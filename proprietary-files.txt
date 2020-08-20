@@ -1208,7 +1208,6 @@ product/etc/permissions/embms.xml
 etc/permissions/privapp-permissions-qti.xml
 product/etc/permissions/qcrilhook.xml
 product/etc/permissions/telephonyservice.xml
-product/etc/permissions/privapp-permissions-oem-product.xml
 etc/sysconfig/qti_whitelist.xml
 product/framework/embmslibrary.jar
 framework/qcnvitems.jar
