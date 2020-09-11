@@ -22,5 +22,9 @@ cc_library_static {
         "system/core/base/include",
         "system/core/init"
     ],
+<<<<<<< HEAD
     shared_libs: ["libbase"]
+=======
+    whole_static_libs: ["libbase"],
+>>>>>>> 8c6b56cf (op3: libinit: include full static libbase)
 }
