@@ -493,6 +493,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     vendor.qti.hardware.servicetracker@1.0.vendor
 
+# Shims
+PRODUCT_PACKAGES += \
+    libcutils_shim
+
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH) \

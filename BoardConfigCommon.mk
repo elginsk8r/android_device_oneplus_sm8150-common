@@ -219,6 +219,10 @@ BOARD_SEPOLICY_DIRS += $(VENDOR_PATH)/sepolicy/vendor
 SOONG_CONFIG_NAMESPACES += ONEPLUS_MSMNILE_SENSORS
 SOONG_CONFIG_ONEPLUS_MSMNILE_SENSORS := ALS_POS_X ALS_POS_Y
 
+# Shims
+TARGET_LD_SHIM_LIBS := \
+    /system/product/lib64/libdpmframework.so|libcutils_shim.so
+
 # Verified Boot
 BOARD_AVB_ENABLE := true
 BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --set_hashtree_disabled_flag
