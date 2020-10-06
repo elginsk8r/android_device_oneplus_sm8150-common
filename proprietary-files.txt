@@ -1157,7 +1157,7 @@ vendor/bin/thermal-engine
 -vendor/lib64/libthermalclient.so
 
 # Time services
--vendor/app/TimeService/TimeService.apk;:timeservice_app_cert
+-vendor/app/TimeService/TimeService.apk;PRESIGNED
 vendor/bin/time_daemon
 vendor/etc/init/init.time_daemon.rc
 vendor/lib64/libtime_genoff.so
