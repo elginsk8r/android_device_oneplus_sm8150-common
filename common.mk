@@ -410,6 +410,7 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 
 # OMX
 PRODUCT_PACKAGES += \
+    libavservices_minijail_vendor \
     libc2dcolorconvert \
     libcodec2_hidl@1.0.vendor \
     libcodec2_vndk.vendor \
