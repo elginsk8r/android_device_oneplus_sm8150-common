@@ -118,6 +118,10 @@ ro.camera.notify_nfc=1
 ro.hardware.nfc_nci=nqx.default
 ro.vendor.nfc.notify_tp=1
 
+# OMX
+debug.stagefright.omx_default_rank.sw-audio=1 \
+debug.stagefright.omx_default_rank=0
+
 # PASR
 vendor.power.pasr.enabled=true
 
