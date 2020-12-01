@@ -75,6 +75,13 @@ constexpr const char* BUILD_VARIANT[] = {
         "OnePlus7TProNR",
 };
 
+constexpr const char* BUILD_PRODUCT[] = {
+        "OnePlus7",
+        "OnePlus7Pro",
+        "OnePlus7T",
+        "OnePlus7TPro",
+};
+
 void property_override(char const prop[], char const value[]) {
     prop_info* pi = (prop_info*)__system_property_find(prop);
     if (pi) {
@@ -107,14 +114,21 @@ void load_props(const char* model, int id) {
     strcpy (variant, id > 3 ? "HD" : "GM");
     strcat (variant, model);
 
+    int fid = id == 4 ? 2 : 0;
+    if (id > 0 && id < 4) {
+        fid = 1;
+    } else if (id > 4 && id <= 6) {
+        fid = 3;
+    }
+
     for (const auto& source : RO_PROP_SOURCES) {
-        ro_prop_override(source, "device", BUILD_DEVICE[id], true);
+        ro_prop_override(source, "device", BUILD_PRODUCT[fid], true);
         ro_prop_override(source, "model", variant, true);
         ro_prop_override(source, "fingerprint", fingerprint,
                          false);
     }
     ro_prop_override(nullptr, "description", description, false);
-    ro_prop_override(nullptr, "product", BUILD_DEVICE[id], false);
+    ro_prop_override(nullptr, "product", BUILD_PRODUCT[fid], false);
 
     // ro.build.fingerprint property has not been set
     property_set("ro.build.fingerprint", fingerprint);
