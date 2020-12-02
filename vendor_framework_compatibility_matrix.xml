@@ -225,10 +225,10 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         </interface>
     </hal>
     <hal format="hidl" optional="true">
-        <name>vendor.nxp.nxpnfc</name>
-        <version>1.0</version>
+        <name>vendor.nxp.hardware.nfc</name>
+        <version>1.0-1</version>
         <interface>
-            <name>INxpNfc</name>
+            <name>INqNfc</name>
             <instance>default</instance>
         </interface>
     </hal>
@@ -430,11 +430,10 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     </hal>
     <hal format="hidl" optional="true">
         <name>android.hardware.wifi.supplicant</name>
-        <version>1.0-2</version>
+        <version>1.0</version>
         <interface>
             <name>ISupplicant</name>
             <instance>default</instance>
-            <instance>wigigp2p</instance>
         </interface>
     </hal>
     <hal format="hidl" optional="true">
@@ -450,14 +449,6 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         <version>1.0</version>
         <interface>
             <name>ISuppTunnelProvider</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="hidl" optional="true">
-        <name>vendor.qti.hardware.fstman</name>
-        <version>1.0</version>
-        <interface>
-            <name>IFstManager</name>
             <instance>default</instance>
         </interface>
     </hal>
@@ -523,7 +514,7 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <hal format="hidl" optional="true">
         <name>vendor.qti.data.factory</name>
         <version>1.0</version>
-        <version>2.0-1</version>
+        <version>2.0</version>
         <interface>
             <name>IFactory</name>
             <instance>default</instance>
@@ -531,7 +522,7 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     </hal>
    <hal format="hidl" optional="true">
         <name>vendor.display.config</name>
-        <version>1.0-12</version>
+        <version>1.0-10</version>
         <interface>
             <name>IDisplayConfig</name>
             <instance>default</instance>
@@ -754,17 +745,7 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
             <instance>default</instance>
         </interface>
     </hal>
-    <!-- Camera PostProcessing service -->
-    <hal format="hidl" optional="true">
-        <name>vendor.qti.hardware.camera.postproc</name>
-        <transport>hwbinder</transport>
-        <version>1.0</version>
-        <interface>
-            <name>IPostProcService</name>
-            <instance>camerapostprocservice</instance>
-        </interface>
-    </hal>
- <!--OnePlus-->
+    <!-- OnePlus -->
     <hal format="hidl" optional="true">
         <name>vendor.dolby.hardware.dms</name>
         <version>1.0</version>
@@ -829,6 +810,7 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
             <instance>default</instance>
         </interface>
     </hal>
+    <!-- Evervolv -->
     <hal format="hidl" optional="true">
         <name>vendor.evervolv.biometrics.fingerprint.inscreen</name>
         <version>1.0</version>
