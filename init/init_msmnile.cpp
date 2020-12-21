@@ -46,18 +46,20 @@ constexpr const char* RO_PROP_SOURCES[] = {
 constexpr const char* BUILD_ID = "QKQ1.190716.003";
 
 constexpr const char* BUILD_INC_VERSION[] = {
-        "1910280100",
-        "1910280100",
-        "1910280100",
-        "1911061831",
-        "1910120055",
-        "1911061831",
+        "2011052232",
+        "2011052232",
+        "2002141334",
+        "2010092151",
+        "2011052234",
+        "2011052221",
+        "2009150235",
 };
 
 constexpr const char* BUILD_DEVICE[] = {
         "OnePlus7",
         "OnePlus7Pro",
         "OnePlus7ProNR",
+        "OnePlus7ProTMO",
         "OnePlus7T",
         "OnePlus7TPro",
         "OnePlus7TProNR",
@@ -66,9 +68,10 @@ constexpr const char* BUILD_DEVICE[] = {
 constexpr const char* BUILD_VARIANT[] = {
         "OnePlus7",
         "OnePlus7Pro",
-        "OnePlus7ProNR",
+        "OnePlus7ProNR_EEA",
+        "OnePlus7ProTMO",
         "OnePlus7T",
-        "OnePlus7TPro_EEA",
+        "OnePlus7TPro",
         "OnePlus7TProNR",
 };
 
@@ -91,7 +94,7 @@ void load_props(const char* model, int id) {
 
         property_override(prop_name.c_str(), value);
     };
-    char variant[7];
+
     char description[PROP_VALUE_MAX+1];
     char fingerprint[PROP_VALUE_MAX+1];
 
@@ -101,17 +104,13 @@ void load_props(const char* model, int id) {
     snprintf(fingerprint, PROP_VALUE_MAX, "OnePlus/%s/%s:10/%s/%s:user/release-keys",
         BUILD_VARIANT[id], BUILD_DEVICE[id], BUILD_ID, BUILD_INC_VERSION[id]);
 
-    strcpy (variant, id > 2 ? "HD" : "GM");
-    strcat (variant, model);
-
     for (const auto& source : RO_PROP_SOURCES) {
-        ro_prop_override(source, "device", BUILD_DEVICE[id], true);
-        ro_prop_override(source, "model", variant, true);
+        ro_prop_override(source, "device", model, true);
+        ro_prop_override(source, "model", model, true);
         ro_prop_override(source, "fingerprint", fingerprint,
                          false);
     }
     ro_prop_override(nullptr, "description", description, false);
-    ro_prop_override(nullptr, "product", BUILD_DEVICE[id], false);
 
     // ro.build.fingerprint property has not been set
     property_set("ro.build.fingerprint", fingerprint);
@@ -119,49 +118,25 @@ void load_props(const char* model, int id) {
 
 void vendor_load_properties() {
     int project_name = stoi(android::base::GetProperty("ro.boot.project_name", ""));
-    bool is_7t = project_name >= 18865;
-
-    switch (project_name){
-        case 18827:
-            /* 5G Europe */
-            load_props("1920", 2);
-            break;
-        case 18831:
-            /* T-Mobile */
-            load_props("1915", 1);
-            break;
-        case 19861:
-            /* T-Mobile 5G McLaren */
-            load_props("1925", 5);
-            break;
-        default:
-            int rf_version = stoi(android::base::GetProperty("ro.boot.rf_version", ""));
-            bool is_pro = project_name != 18857 && project_name != 18865;
-            int id = is_7t ? 3 : 0;
-            if (is_pro) {
-                id = is_7t ? 4 : 1;
-            }
-            switch (rf_version){
-                case 1:
-                    /* China*/
-                    load_props(is_pro ? "1910" : "1900", id);
-                    break;
-                case 3:
-                    /* India*/
-                    load_props(is_pro ? "1911" : "1901", id);
-                    break;
-                case 4:
-                    /* Europe */
-                    load_props(is_pro ? "1913" : "1903", id);
-                    break;
-                case 5:
-                    /* Global / US Unlocked */
-                    load_props(is_pro ? "1917" : "1907", id);
-                    break;
-                default:
-                    /* Generic*/
-                    load_props(is_pro ? "1917" : "1907", id);
-                    break;
-            }
+    if (project_name == 18827) {
+        /* 5G Europe */
+        load_props("OnePlus7Pro", 2);
+    } else if (project_name == 18831) {
+        /* T-Mobile */
+        load_props("OnePlus7Pro", 3);
+    } else if (project_name == 19861) {
+        /* T-Mobile 5G McLaren */
+        load_props("OnePlus7TPro", 6);
+    } else {
+        /* Global Variants */
+        if (project_name == 18865) {
+            load_props("OnePlus7T", 4);
+        } else if (project_name > 18865) {
+            load_props("OnePlus7TPro", 5);
+        } else if (project_name != 18857) {
+            load_props("OnePlus7Pro", 1);
+        } else {
+            load_props("OnePlus7", 0);
         }
+    }
 }
